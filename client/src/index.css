@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body, #root {
+    @apply h-full;
+  }
+  body {
+    @apply bg-slate-950 text-slate-100 antialiased;
+    -webkit-overflow-scrolling: touch;
+  }
+  * {
+    box-sizing: border-box;
+    /* Remove blue tap flash on iOS */
+    -webkit-tap-highlight-color: transparent;
+  }
+  /* iOS HIG: minimum 44px touch target — apply explicitly via min-h-[44px] on primary buttons */
+  /* Removed global rule to allow small icon-only buttons to stay compact */
+  /* Safe area padding — handles notch, Dynamic Island, home indicator */
+  #root {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #334155 transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar { width: 6px; }
+  .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: #334155;
+    border-radius: 3px;
+  }
+}
