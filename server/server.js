@@ -20,11 +20,14 @@ cloudinary.config({
 app.use(cors({
   origin: [
     process.env.CLIENT_ORIGIN || 'http://localhost:5173',
+    'http://localhost:5173',
     'capacitor://localhost',   // iOS Capacitor
     'ionic://localhost',        // fallback
     'http://localhost',         // Android Capacitor
-    'http://localhost:5173',
+    'https://photo-transfer-neon.vercel.app',
+    /\.vercel\.app$/,            // Allow all Vercel preview deployments
   ],
+  credentials: true,
 }));
 app.use(express.json());
 
