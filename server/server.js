@@ -188,7 +188,11 @@ app.get('/api/photos', async (req, res) => {
     );
     res.json({ photos });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error('Error in /api/photos:', err);
+    res.status(500).json({
+      error: err?.message || err?.error?.message || 'Unknown error',
+      details: err?.error || null,
+    });
   }
 });
 
